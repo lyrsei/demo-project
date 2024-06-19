@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+This is a project for a data science course. https://bootcamp.davidkane.info
+
+Data source:
+Mehlferber, Elijah (2023). Phyllosphere microbial associations improve plant reproductive success [Dataset]. Dryad. https://doi.org/10.5061/dryad.73n5tb333
+
