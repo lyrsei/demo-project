@@ -1,5 +1,23 @@
 ---
 title: "Phyllosphere microbial associations and plant reproductive success"
 ---
+```{r}
+#| message: FALSE
+#| echo: FALSE
 
+library(ggplot2)
+library(tidyverse)
+
+file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/demo-project/data/Trial_1_Greenhouse_Bacterial_Abundance.csv"
+df <- read_csv(file_path)
+
+ggplot(df, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Bacterial Abundance in Greenhouse Samples",
+       x = "Sample",
+       y = "Abundance",
+       fill = "Bacterial Group") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
