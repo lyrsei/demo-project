@@ -16,28 +16,105 @@ library(tidyverse)
 library(plotly)
 
 file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_1_Greenhouse_Bacterial_Abundance.csv"
-df <- read_csv(file_path)
+df1 <- read_csv(file_path)
 
-p <- ggplot(df, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text = TotalAbundance)) +
+p <- ggplot(df1, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text = TotalAbundance)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
   labs(title = "Bacterial Abundance in Greenhouse Samples",
        x = "Sample",
        y = "Total Abundance",
        fill = "Treatment") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid.minor = element_blank())+
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
 
-# Convert ggplot to an interactive plotly plot
 interactive_plot <- ggplotly(p, tooltip = "text")
 
-# Add a customized title with HTML for italics
 interactive_plot <- interactive_plot %>% layout(
-  title = htmltools::HTML("Bacterial Abundance in Greenhouse Samples (<i>Solanum lycopersicum</i>)")
+  title = htmltools::HTML("Bacterial Abundance in Greenhouse Samples \n <i>Solanum lycopersicum</i>")
 )
 
-# Show the interactive plot
 interactive_plot
 
 ```
 
 Trial 2:
+
+```{r}
+#| message: FALSE
+#| echo: FALSE
+
+library(tidyverse)
+library(ggplot2)
+
+df2 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Count.csv")
+
+df3 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Weights.csv")
+
+ggplot(df2, aes(x = Bacterial_Treatment, y = Total_Fruit, fill = Bacterial_Treatment)) +
+  geom_boxplot() +
+  facet_grid(. ~ Azomite) +
+  labs(
+    title = "Greenhouse Fruit Count",
+    x = "Bacterial Treatment",
+    y = "Tomatoes Produced per Plant",
+    fill = "Bacterial Treatment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+ggplot(df3, aes(x = Bacterial_Treatment, y = Average_Weight, fill = Bacterial_Treatment)) +
+  geom_boxplot() +
+  facet_grid(. ~ Azomite) +
+  labs(
+    title = "Greenhouse Fruit Weight",
+    x = "Bacterial Treatment",
+    y = "Tomatoes Weight",
+    fill = "Bacterial Treatment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+# Add a new column to differentiate the two datasets
+df2 <- df2 %>%
+  mutate(Measurement = "Total Fruit",
+         Value = Total_Fruit) %>%
+  select(-Total_Fruit)
+
+df3 <- df3 %>%
+  mutate(Measurement = "Average Weight",
+         Value = Average_Weight) %>%
+  select(-Average_Weight)
+
+# Combine the two datasets
+combined_df <- bind_rows(df2, df3)
+
+# Create the combined plot
+ggplot(combined_df, aes(x = Bacterial_Treatment, y = Value, fill = Bacterial_Treatment)) +
+  geom_boxplot() +
+  facet_grid(Measurement ~ Azomite, scales = "free_y") +
+  labs(
+    title = "Greenhouse Fruit Count and Weight",
+    x = "Bacterial Treatment",
+    y = NULL,
+    fill = "Bacterial Treatment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank()
+  ) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+```
+
