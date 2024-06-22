@@ -7,9 +7,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - sources.qmd
-
+      - about.qmd
+      
 format:
   html:
     theme: cosmo

@@ -5,23 +5,39 @@ title: "Phyllosphere microbial associations and plant reproductive success"
 The phyllosphere plant microbiome is an important component of Plant-Microbe systems. The following data set was was sourced from an article on Dryad. It explores the possibility of adding a synthetic microbial consortium to tomatoes (Solanum lycopersicum) in a greenhouse settings where microbe recruitment could be disrupted.
 The added phyllosphere microbial associations was found to improve plant reproductive success.
 
+Trial 1:
+
 ```{r}
 #| message: FALSE
 #| echo: FALSE
 
 library(ggplot2)
 library(tidyverse)
+library(plotly)
 
 file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_1_Greenhouse_Bacterial_Abundance.csv"
 df <- read_csv(file_path)
 
-ggplot(df, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment)) +
+p <- ggplot(df, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text = TotalAbundance)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
   labs(title = "Bacterial Abundance in Greenhouse Samples",
        x = "Sample",
-       y = "Abundance",
-       fill = "Bacterial Group") +
+       y = "Total Abundance",
+       fill = "Treatment") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Convert ggplot to an interactive plotly plot
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+# Add a customized title with HTML for italics
+interactive_plot <- interactive_plot %>% layout(
+  title = htmltools::HTML("Bacterial Abundance in Greenhouse Samples (<i>Solanum lycopersicum</i>)")
+)
+
+# Show the interactive plot
+interactive_plot
+
 ```
 
+Trial 2:
