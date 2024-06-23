@@ -32,10 +32,10 @@ p1 <- ggplot(df1, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text 
   scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
 
 # Convert ggplot object to plotly object
-interactive_plot1 <- ggplotly(p1, tooltip = "text")
+p1 <- ggplotly(p1, tooltip = "text")
 
 # Modify the layout to adjust the title position and font size
-interactive_plot1 <- interactive_plot1 %>% layout(
+p1 <- p1 %>% layout(
   title = list(
     text = "Bacterial Abundance in Greenhouse Samples of <i>Solanum lycopersicum</i>",
     x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
@@ -46,7 +46,7 @@ interactive_plot1 <- interactive_plot1 %>% layout(
 )
 
 # Display the interactive plot
-interactive_plot1
+p1
 
 ```
 
@@ -82,7 +82,8 @@ combined_df$Measurement_Type <- factor(combined_df$Measurement_Type, levels = c(
 # Plot using ggplot
 p2 <- ggplot(combined_df, aes(x = Bacterial_Treatment, y = Measurement_Value, fill = Bacterial_Treatment)) +
   geom_boxplot() +
-  facet_grid(rows = vars(Measurement_Type), cols = vars(Azomite), scales = "free_x", space = "free_x") +
+  facet_grid(rows = vars(Measurement_Type), cols = vars(Azomite), scales = "free_x", space = "free_x",
+             labeller = labeller(Azomite = c(`0` = "0g Azomite", `0.5` = "0.5g Azomite", `1` = "1g Azomite", `2` = "2g Azomite", `3` = "3g Azomite"))) +
   labs(
     title = "Greenhouse Fruit Count and Weight",
     x = "Bacterial Treatment",
@@ -102,7 +103,7 @@ p2 <- ggplot(combined_df, aes(x = Bacterial_Treatment, y = Measurement_Value, fi
 # Convert ggplot object to plotly for interactivity
 p2 <- ggplotly(p2)
 
-# Modify the layout to adjust the title position, font size, and margin
+# Modify the layout to adjust the title position, font size, margin, and legend spacing
 p2 <- p2 %>% layout(
   title = list(
     text = "Greenhouse Fruit Count and Weight",
@@ -111,11 +112,18 @@ p2 <- p2 %>% layout(
     font = list(size = 20)  # Set the font size to 20 (adjust as needed)
   ),
   margin = list(t = 100),  # Increase top margin (adjust the value as needed)
-  legend = list(x = 1.1, y = 0.5)  # Adjust legend position (play with x and y values to move it)
+  legend = list(
+    y = 0.5,
+    x = 1.1,  # Move legend to the right
+    xanchor = "left"
+  )
 )
 
 # Display the interactive plot
 p2
+
 ```
 
 **Trial 3**
+
+
