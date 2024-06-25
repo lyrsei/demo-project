@@ -7,3 +7,30 @@ The phyllosphere plant microbiome is an important component of plant health and 
 The following data set was was sourced from an article on Dryad. It explores the possibility of adding a synthetic microbial consortium to tomatoes *Solanum lycopersicum* in a greenhouse setting where microbe recruitment could be disrupted.
 
 The added phyllosphere microbial associations was found to improve plant reproductive success.
+
+The experiment was done through 3 trials.
+
+**Trial 1**
+
+```{r}
+library(DiagrammeR)
+# Create the diagram
+grViz("
+  digraph timeline {
+    # Define node styles
+    node [shape=box, style=filled, color=lightblue, fontname=Helvetica, fontsize=10]
+
+    # Create nodes
+    node1 [label='Inoculation 1\nWeek 4']
+    node2 [label='Inoculation 2\nWeek 5']
+    node3 [label='Inoculation 3\nWeek 6']
+    node4 [label='Inoculation 4\nWeek 7']
+    node5 [label='Leaves sampled\nWeek 8', color=gold]
+
+    # Create edges
+    node1 -> node2 -> node3 -> node4 -> node5
+  }
+")
+
+```
+
