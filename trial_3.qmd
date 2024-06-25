@@ -28,9 +28,9 @@ p3 <- ggplot(df4, aes(x = Treatment, y = TotalSynComAbundance, fill = Treatment,
   geom_boxplot() +
   theme_minimal() +
   labs(title = "Bacterial Abundance in Greenhouse and Field Samples",
-       x = "Bacterial Treatment",
+       x = NULL,
        y = "Total Microbial Abundance",
-       fill = "Treatment") +
+       fill = "Bacterial Treatment") +
   theme(panel.grid.minor = element_blank(),
         strip.background = element_rect(color = "black", fill = "white"),  # Add border to facet labels
         strip.text = element_text(face = "bold", size = 14),  # Make the facet labels bold

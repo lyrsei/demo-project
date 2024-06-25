@@ -40,7 +40,7 @@ p2 <- ggplot(combined_df, aes(x = Bacterial_Treatment, y = Measurement_Value, fi
              labeller = labeller(Azomite = c(`0` = "0g Azomite", `0.5` = "0.5g Azomite", `1` = "1g Azomite", `2` = "2g Azomite", `3` = "3g Azomite"))) +
   labs(
     title = "Greenhouse Fruit Count and Weight",
-    x = "Bacterial Treatment",
+    x = NULL,
     y = "",
     fill = "Bacterial Treatment"
   ) +

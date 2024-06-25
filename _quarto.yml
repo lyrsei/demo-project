@@ -5,8 +5,6 @@ website:
   title: "Phyllosphere microbiome"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - text: Analysis
         menu:
           - href: trial_1.qmd
