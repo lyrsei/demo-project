@@ -1,0 +1,54 @@
+---
+title: "Trial 1"
+execute: 
+  message: false
+  echo: false
+  warning: false
+---
+
+Trial 1 focused on examining the initial interactions and colonization patterns of bacterial communities on the phyllosphere. This study utilized a controlled greenhouse setting to observe the establishment and development of these communities under different bacterial treatments.
+
+The plants were inoculated with PhylloStart bacterial consortium at an optical density of 0.02. Leaf samples were collected in Week 8 to analyze the impact of the inoculations on the phyllosphere microbiome.
+
+```{r}
+
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+
+# Assuming your data reading and ggplot code remains unchanged
+file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_1_Greenhouse_Bacterial_Abundance.csv"
+df1 <- read_csv(file_path)
+
+# Your ggplot code
+p1 <- ggplot(df1, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text = TotalAbundance)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Bacterial Abundance in Greenhouse Samples",
+       x = "Sample",
+       y = "Total Microbial Abundance",
+       fill = "Treatment") +
+  theme(axis.text.x = element_blank(),  # Hide the x-axis text
+        axis.ticks.x = element_blank(), # Hide the x-axis ticks,
+        panel.grid.minor = element_blank()) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+# Convert ggplot object to plotly object
+p1 <- ggplotly(p1, tooltip = "text")
+
+# Modify the layout to adjust the title position and font size
+p1 <- p1 %>% layout(
+  title = list(
+    text = "Bacterial Abundance in Greenhouse Samples of <i>Solanum lycopersicum</i>",
+    x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
+    xanchor = 'left',  # Anchor the title text to the left
+    font = list(size = 20),  # Set the font size to 20 (adjust as needed)
+    margin = list(t = 100)
+  )
+)
+
+# Display the interactive plot
+p1
+```
+
+The leaves of non-PhylloStart treated greenhouse plants have low bacterial abundance.

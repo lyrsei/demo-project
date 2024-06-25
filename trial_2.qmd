@@ -1,0 +1,83 @@
+---
+title: "Trial 2"
+execute: 
+  echo: false
+  message: false
+  warning: false
+---
+
+For Trial 2, the plants were again treated with PhylloStart at an optical density of 0.02 versus a control. This trial had three inoculation events at Weeks 3, 6, and 10. Leaf samples were taken at Week 10, followed by three harvesting sessions at Weeks 17, 18, and 19, to assess the effects on plant development and fruit yield in greenhouse setting.
+
+```{r}
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(plotly)
+
+# Read the data (replace with your file paths)
+df2 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Count.csv")
+df3 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Weights.csv")
+
+# Add a column to each dataframe to indicate the measurement type
+df2$Measurement_Type <- "Fruit Count"
+df3$Measurement_Type <- "Fruit Weight"
+
+# Rename the y-axis columns for consistency
+df2 <- df2 %>% rename(Measurement_Value = Total_Fruit)
+df3 <- df3 %>% rename(Measurement_Value = Average_Weight)
+
+# Combine the dataframes
+combined_df <- bind_rows(df2, df3)
+
+# Convert Measurement_Type to factor and specify order
+combined_df$Measurement_Type <- factor(combined_df$Measurement_Type, levels = c("Fruit Count", "Fruit Weight"))
+
+# Plot using ggplot
+p2 <- ggplot(combined_df, aes(x = Bacterial_Treatment, y = Measurement_Value, fill = Bacterial_Treatment)) +
+  geom_boxplot() +
+  facet_grid(rows = vars(Measurement_Type), cols = vars(Azomite), scales = "free_x", space = "free_x",
+             labeller = labeller(Azomite = c(`0` = "0g Azomite", `0.5` = "0.5g Azomite", `1` = "1g Azomite", `2` = "2g Azomite", `3` = "3g Azomite"))) +
+  labs(
+    title = "Greenhouse Fruit Count and Weight",
+    x = "Bacterial Treatment",
+    y = "",
+    fill = "Bacterial Treatment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, margin = margin(b = 20)),  # Add margin to the bottom of the title
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_text(margin = margin(t = 20)),  # Increase margin between x-axis title and plot
+    strip.background = element_rect(colour = "black"),
+    strip.text = element_text(size = 12, face = "bold", color = "black")
+  ) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+# Convert ggplot object to plotly for interactivity
+p2 <- ggplotly(p2)
+
+# Modify the layout to adjust the title position, font size, margin, and legend spacing
+p2 <- p2 %>% layout(
+  title = list(
+    text = "Greenhouse Fruit Count and Weight",
+    x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
+    xanchor = 'left',  # Anchor the title text to the left
+    font = list(size = 20)  # Set the font size to 20 (adjust as needed)
+  ),
+  margin = list(t = 100),  # Increase top margin (adjust the value as needed)
+  legend = list(
+    y = 0.5,
+    x = 1.1,  # Move legend to the right
+    xanchor = "left"
+  )
+)
+
+# Display the interactive plot
+p2
+
+```
+
+PhylloStart treated plant produced significantly more fruit than non-treated plant with no change in weight.
+
+Azomite treatment significantly increased fruit count weight.

@@ -7,10 +7,19 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - analysis.qmd
-      - sources.qmd
-      - about.qmd
-      
+      - text: Analysis
+        menu:
+          - href: trial_1.qmd
+            text: "Trial 1"
+          - href: trial_2.qmd
+            text: "Trial 2"
+          - href: trial_3.qmd
+            text: "Trial 3"
+      - href: sources.qmd
+        text: Sources
+      - href: about.qmd
+        text: About
+
 format:
   html:
     theme: cosmo

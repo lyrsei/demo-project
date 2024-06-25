@@ -2,6 +2,8 @@
 title: "Phyllosphere microbial associations and plant reproductive success"
 ---
 
-The phyllosphere plant microbiome is an important component of plant health and reproductive success. The following data set was was sourced from an article on Dryad. It explores the possibility of adding a synthetic microbial consortium to tomatoes (Solanum lycopersicum) in a greenhouse settings where microbe recruitment could be disrupted.
-The added phyllosphere microbial associations was found to improve plant reproductive success.
+The phyllosphere plant microbiome is an important component of plant health and reproductive success.
 
+The following data set was was sourced from an article on Dryad. It explores the possibility of adding a synthetic microbial consortium to tomatoes *Solanum lycopersicum* in a greenhouse setting where microbe recruitment could be disrupted.
+
+The added phyllosphere microbial associations was found to improve plant reproductive success.
