@@ -4,7 +4,7 @@ title: "About"
 
 Hello, I'm Yesmine AYEB, an agronomy engineer with a growing interest in data science and its applications in plant research. 
 
-This is a project for a data science course. [Kane's Free Data Science Bootcamp] https://bootcamp.davidkane.info
+This is a project for a data science course. Kane's Free Data Science Bootcamp: https://bootcamp.davidkane.info
 
 Contact: 
 
@@ -12,5 +12,4 @@ ayeb.yesmine@gmail.com
 
 https://github.com/lyrsei
 
-https://www.linkedin.com/in/yesmine-ayeb/ 
 

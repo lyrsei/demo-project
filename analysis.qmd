@@ -1,0 +1,173 @@
+---
+title: "Analysis"
+---
+
+**Trial 1**
+
+```{r}
+#| message: FALSE
+#| echo: FALSE
+
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+
+# Assuming your data reading and ggplot code remains unchanged
+file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_1_Greenhouse_Bacterial_Abundance.csv"
+df1 <- read_csv(file_path)
+
+# Your ggplot code
+p1 <- ggplot(df1, aes(x = Sample_ID, y = TotalAbundance, fill = Treatment, text = TotalAbundance)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Bacterial Abundance in Greenhouse Samples",
+       x = "Sample",
+       y = "Total Microbial Abundance",
+       fill = "Treatment") +
+  theme(axis.text.x = element_blank(),  # Hide the x-axis text
+        axis.ticks.x = element_blank(), # Hide the x-axis ticks,
+        panel.grid.minor = element_blank()) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+# Convert ggplot object to plotly object
+p1 <- ggplotly(p1, tooltip = "text")
+
+# Modify the layout to adjust the title position and font size
+p1 <- p1 %>% layout(
+  title = list(
+    text = "Bacterial Abundance in Greenhouse Samples of <i>Solanum lycopersicum</i>",
+    x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
+    xanchor = 'left',  # Anchor the title text to the left
+    font = list(size = 20),  # Set the font size to 20 (adjust as needed)
+    margin = list(t = 100)
+  )
+)
+
+# Display the interactive plot
+p1
+
+```
+
+**Trial 2**
+
+```{r}
+#| message: FALSE
+#| echo: FALSE
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(plotly)
+
+# Read the data (replace with your file paths)
+df2 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Count.csv")
+df3 <- read.csv("C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_2_Greenhouse_Fruit_Weights.csv")
+
+# Add a column to each dataframe to indicate the measurement type
+df2$Measurement_Type <- "Fruit Count"
+df3$Measurement_Type <- "Fruit Weight"
+
+# Rename the y-axis columns for consistency
+df2 <- df2 %>% rename(Measurement_Value = Total_Fruit)
+df3 <- df3 %>% rename(Measurement_Value = Average_Weight)
+
+# Combine the dataframes
+combined_df <- bind_rows(df2, df3)
+
+# Convert Measurement_Type to factor and specify order
+combined_df$Measurement_Type <- factor(combined_df$Measurement_Type, levels = c("Fruit Count", "Fruit Weight"))
+
+# Plot using ggplot
+p2 <- ggplot(combined_df, aes(x = Bacterial_Treatment, y = Measurement_Value, fill = Bacterial_Treatment)) +
+  geom_boxplot() +
+  facet_grid(rows = vars(Measurement_Type), cols = vars(Azomite), scales = "free_x", space = "free_x",
+             labeller = labeller(Azomite = c(`0` = "0g Azomite", `0.5` = "0.5g Azomite", `1` = "1g Azomite", `2` = "2g Azomite", `3` = "3g Azomite"))) +
+  labs(
+    title = "Greenhouse Fruit Count and Weight",
+    x = "Bacterial Treatment",
+    y = "",
+    fill = "Bacterial Treatment"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, margin = margin(b = 20)),  # Add margin to the bottom of the title
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title.x = element_text(margin = margin(t = 20)),  # Increase margin between x-axis title and plot
+    strip.background = element_rect(colour = "black"),
+    strip.text = element_text(size = 12, face = "bold", color = "black")
+  ) +
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart" = "#D4C4FB"))
+
+# Convert ggplot object to plotly for interactivity
+p2 <- ggplotly(p2)
+
+# Modify the layout to adjust the title position, font size, margin, and legend spacing
+p2 <- p2 %>% layout(
+  title = list(
+    text = "Greenhouse Fruit Count and Weight",
+    x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
+    xanchor = 'left',  # Anchor the title text to the left
+    font = list(size = 20)  # Set the font size to 20 (adjust as needed)
+  ),
+  margin = list(t = 100),  # Increase top margin (adjust the value as needed)
+  legend = list(
+    y = 0.5,
+    x = 1.1,  # Move legend to the right
+    xanchor = "left"
+  )
+)
+
+# Display the interactive plot
+p2
+
+```
+
+**Trial 3**
+
+```{r}
+#| message: FALSE
+#| echo: FALSE
+
+# Load necessary libraries
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+
+# Load the dataset
+file_path <- "C:/Users/LENOVO/Documents/Desktop/projects/phyllosphere-microbiome/data/Trial_3_Greenhouse_and_Field_Bacterial_Abundance.csv"
+df4 <- read_csv(file_path)
+
+# Create a ggplot bar chart faceted by Location using facet_wrap with custom strip background
+p3 <- ggplot(df4, aes(x = Sample__ID, y = TotalSynComAbundance, fill = Treatment, text = TotalSynComAbundance)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Bacterial Abundance in Greenhouse and Field Samples",
+       x = "Sample",
+       y = "Total Microbial Abundance",
+       fill = "Treatment") +
+  theme(axis.text.x = element_blank(),  # Hide the x-axis text
+        axis.ticks.x = element_blank(), # Hide the x-axis ticks,
+        panel.grid.minor = element_blank(),
+        strip.background = element_rect(color = "black", fill = "white"),  # Add border to facet labels
+        strip.text = element_text(face = "bold", size = 14)) +  # Make the facet labels bold
+  scale_fill_manual(values = c("Control" = "#EBFBC4", "PhylloStart High" = "#D4C4FB", "PhylloStart Low" = "#FBD4C4")) +
+  facet_wrap(~ Location, ncol = 2)
+
+# Convert ggplot object to plotly object
+p3 <- ggplotly(p3, tooltip = "text")
+
+# Modify the layout to adjust the title position and font size, and increase top margin
+p3 <- p3 %>% layout(
+  title = list(
+    text = "Bacterial Abundance in Greenhouse and Field Samples",
+    x = 0,  # Adjust the x position to move title to the left (0 is left-aligned)
+    xanchor = 'left',  # Anchor the title text to the left
+    font = list(size = 20)  # Set the font size to 20 (adjust as needed)
+  ),
+  margin = list(t = 100)  # Increase top margin to add spacing between the title and the graph
+)
+
+# Display the interactive plot
+p3
+
+```
