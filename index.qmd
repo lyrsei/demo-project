@@ -1,35 +1,83 @@
 ---
 title: "Phyllosphere microbial associations and plant reproductive success"
+execute: 
+  message: false
+  echo: false
+  warning: false
 ---
 
-The phyllosphere plant microbiome is an important component of plant health and reproductive success.
+The phytobiome is an important component of plant health and reproductive success.
 
 The following data set was was sourced from an article on Dryad. It explores the possibility of adding a synthetic microbial consortium to tomatoes *Solanum lycopersicum* in a greenhouse setting where microbe recruitment could be disrupted.
 
-The added phyllosphere microbial associations was found to improve plant reproductive success.
+The added microbial associations named PhylloStart were found to improve plant reproductive success.
 
-The experiment was done through 3 trials.
-
-**Trial 1**
+This experiment was conducted through 3 trials.
 
 ```{r}
 library(DiagrammeR)
-# Create the diagram
+
 grViz("
-  digraph timeline {
-    # Define node styles
-    node [shape=box, style=filled, color=lightblue, fontname=Helvetica, fontsize=10]
+digraph flowchart {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle, style = filled, fontname = Helvetica, fontsize = 12, width = 1.5, height = 0.5]
 
-    # Create nodes
-    node1 [label='Inoculation 1\nWeek 4']
-    node2 [label='Inoculation 2\nWeek 5']
-    node3 [label='Inoculation 3\nWeek 6']
-    node4 [label='Inoculation 4\nWeek 7']
-    node5 [label='Leaves sampled\nWeek 8', color=gold]
-
-    # Create edges
-    node1 -> node2 -> node3 -> node4 -> node5
+  // Trial 1 nodes
+  subgraph cluster_Trial1 {
+    label = 'Trial 1'
+    style = invisible
+    rank = same;
+    T1_A0 [label = <<font color='blue'><u>Trial 1</u></font>>, style = '', fillcolor = 'white', href = 'https://lyrsei.quarto.pub/phyllosphere-microbiome/trial_1.html']
+    T1_A [label = 'Inoculation 1\\nWeek 4', fillcolor = '#D4C4FB']
+    T1_B [label = 'Inoculation 2\\nWeek 5', fillcolor = '#D4C4FB']
+    T1_C [label = 'Inoculation 3\\nWeek 6', fillcolor = '#D4C4FB']
+    T1_D [label = 'Inoculation 4\\nWeek 7', fillcolor = '#D4C4FB']
+    T1_E [label = 'Leaves sampled\\nWeek 8', fillcolor = '#EBFBC4']
   }
+
+  // Trial 2 nodes
+  subgraph cluster_Trial2 {
+    label = 'Trial 2'
+    style = invisible
+    rank = same;
+    T2_A0 [label = <<font color='blue'><u>Trial 2</u></font>>, style = '', fillcolor = 'white', href = 'https://lyrsei.quarto.pub/phyllosphere-microbiome/trial_2.html']
+    T2_A [label = 'Inoculation 1\\nWeek 3', fillcolor = '#D4C4FB']
+    T2_B [label = 'Inoculation 2\\nWeek 6', fillcolor = '#D4C4FB']
+    T2_C [label = 'Inoculation 3\\nWeek 10', fillcolor = '#D4C4FB']
+    T2_D [label = 'Harvest 1\\nWeek 17', fillcolor = '#FBD4C4']
+    T2_E [label = 'Harvest 2\\nWeek 18', fillcolor = '#FBD4C4']
+    T2_F [label = 'Harvest 3\\nWeek 19', fillcolor = '#FBD4C4']
+  }
+
+  // Trial 3 nodes
+  subgraph cluster_Trial3 {
+    label = 'Trial 3'
+    style = invisible
+    rank = same;
+    T3_A0 [label = <<font color='blue'><u>Trial 3</u></font>>, style = '', fillcolor = 'white', href = 'https://lyrsei.quarto.pub/phyllosphere-microbiome/trial_3.html']
+    T3_A [label = 'Inoculation 1\\nWeek 2', fillcolor = '#D4C4FB']
+    T3_B [label = 'Inoculation 2\\nWeek 4', fillcolor = '#D4C4FB']
+    T3_C [label = 'Inoculation 3\\nWeek 6', fillcolor = '#D4C4FB']
+    T3_D [label = 'Leaves sampled\\nWeek 9', fillcolor = '#EBFBC4']
+    T3_E [label = 'Harvest 1\\nWeek 18', fillcolor = '#FBD4C4']
+    T3_F [label = 'Harvest 2\\nWeek 24', fillcolor = '#FBD4C4']
+    T3_G [label = 'Transfer to Field\\nWeek 8', fillcolor = '#B7E4C7']
+    T3_H [label = 'Leaves sampled\\nWeek 9', fillcolor = '#EBFBC4']
+    T3_I [label = 'Harvest 1\\nWeek 24', fillcolor = '#FBD4C4']
+  }
+
+  // Trial 1 edges
+  T1_A0 -> T1_A -> T1_B -> T1_C -> T1_D -> T1_E
+  
+  // Trial 2 edges
+  T2_A0 -> T2_A -> T2_B -> T2_C -> T2_D -> T2_E -> T2_F
+  
+  // Trial 3 edges
+  T3_A0 -> T3_A -> T3_B -> T3_C -> T3_D -> T3_E -> T3_F
+  T3_C -> T3_G -> T3_H
+  T3_H -> T3_I
+}
 ")
 
 ```

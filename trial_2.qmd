@@ -6,7 +6,7 @@ execute:
   warning: false
 ---
 
-For Trial 2, the plants were again treated with PhylloStart at an optical density of 0.02 versus a control. This trial had three inoculation events at Weeks 3, 6, and 10. Leaf samples were taken at Week 10, followed by three harvesting sessions at Weeks 17, 18, and 19, to assess the effects on plant development and fruit yield in greenhouse setting.
+For Trial 2, the plants were again treated with PhylloStart versus a control. This trial had three inoculation events at Weeks 3, 6, and 10. Leaf samples were taken at Week 10, followed by three harvesting sessions at Weeks 17, 18, and 19, to assess the effects on plant development and fruit yield in greenhouse setting.
 
 ```{r}
 
@@ -78,6 +78,6 @@ p2
 
 ```
 
-PhylloStart treated plant produced significantly more fruit than non-treated plant with no change in weight.
+PhylloStart treated plants produced significantly more fruit than non-treated plants with no change in weight.
 
-Azomite treatment significantly increased fruit count weight.
+Azomite treatment significantly increased fruit count and weight.

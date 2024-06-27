@@ -6,7 +6,7 @@ execute:
   warning: false
 ---
 
-Trial 1 focused on examining the initial interactions and colonization patterns of bacterial communities on the phyllosphere. This study utilized a controlled greenhouse setting to observe the establishment and development of these communities under different bacterial treatments.
+Trial 1 focused on examining colonization patterns of bacterial communities on the phyllosphere. This study utilized a controlled greenhouse setting to observe the establishment and development of these communities.
 
 The plants were inoculated with PhylloStart bacterial consortium at an optical density of 0.02. Leaf samples were collected in Week 8 to analyze the impact of the inoculations on the phyllosphere microbiome.
 

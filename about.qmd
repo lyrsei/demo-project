@@ -6,7 +6,7 @@ Hello, I'm Yesmine AYEB, an agronomy engineer with a growing interest in data sc
 
 This is a project for a data science course: [Kane's Free Data Science Bootcamp](https://bootcamp.davidkane.info)
 
-Contact:
+**Contact:**
 
 ayeb.yesmine\@gmail.com
 

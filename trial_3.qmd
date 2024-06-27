@@ -6,7 +6,7 @@ execute:
   warning: false
 ---
 
-Trial 3 combined elements of both greenhouse and field studies to provide a comprehensive understanding of bacterial community dynamics across different environments. This trial assessed the overall impact of the bacterial treatments on plant health and productivity.
+Trial 3 combined elements of both greenhouse and field studies to provide a comprehensive understanding of bacterial community dynamics across different environments. 
 
 The plants were inoculated at Weeks 2, 4, and 6, with leaf samples collected at Week 9. The plants were then transferred to a field environment in Week 8, and additional leaf samples were taken again in Week 9. The harvesting occurred in Week 24 to determine the long-term effects of the treatments on fruit production.
 
@@ -55,6 +55,8 @@ p3 <- p3 %>% layout(
 # Display the interactive plot
 p3
 ```
+
+PhylloStart does not persist after plants are transplanted to the field.
 
 Different densities of PhylloStart lead to different amounts of leaf colonization for greenhouse plants.
 
