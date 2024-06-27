@@ -136,4 +136,4 @@ p4 <- p4 %>% layout(
 p4
 ```
 
-PhylloStart High Density significantly increased fruit production in greenhouse tomatoes.
+PhylloStart High Density significantly increased fruit production in greenhouse tomatoes compared to PhylloStart Low Density.
